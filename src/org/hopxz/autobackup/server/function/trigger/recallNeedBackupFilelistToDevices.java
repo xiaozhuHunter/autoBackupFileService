@@ -19,17 +19,26 @@ public class recallNeedBackupFilelistToDevices implements baseTriggerFunctionImp
         HashMap<String,Object> recvMsgMap = new HashMap<>();//用于收集结果map对象
         packerXML packerXML = new packerXML();
         SQLUtils sqlUtils = new SQLUtils();
+        String pathStr = sqlUtils.getResultBySelect("userRootPath",
+                "nodeal_file_list",
+                "userId = '"+userIdInfo+"'").get(0).get("userRootPath").toString();
         ArrayList<HashMap<String,Object>> sqlResultsStr = sqlUtils.
                 getResultBySelect("a.filename as fileName,a.md5str as fileMd5",
                         "nodeal_file_list a,user_info b,user_device_cfg c",
                         "b.userid = c.userid and a.devFromWhere = c.deviceid "+
-                                "b.filepath = a.userRootPath + b.devFromWhere and " +
-                                "a.userid = '"+userIdInfo+"' and b.devFromWhere = '" +
-                                deviceInfo+"' and b.backupFlag = '1'");
+                                "a.filepath = b.userRootPath + a.devFromWhere and " +
+                                "b.userid = '"+userIdInfo+"' and b.devFromWhere = '" +
+                                deviceInfo+"' and a.backupFlag = '1'");
         ArrayList<HashMap<String,Object>> tempArrayList = new ArrayList<>();
         for(HashMap<String,Object> hashMap1:fileInfoList){
             if(!sqlResultsStr.contains(hashMap1)){
                 tempArrayList.add(hashMap1);
+                HashMap<String,Object> tempHashMap = new HashMap<>();
+                tempHashMap.putAll(hashMap1);
+                tempHashMap.put("devFromWhere",deviceInfo);
+                tempHashMap.put("backupFlag",0);
+                tempHashMap.put("filePath",pathStr+deviceInfo);
+                sqlUtils.insertDB(tempHashMap,"nodeal_file_list");
             }
         }
         recvMsgMap.put("/server/body/array/fileInfoList",tempArrayList);

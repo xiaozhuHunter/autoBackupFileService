@@ -41,7 +41,7 @@ public class recvTempfileFromDevices implements baseTriggerFunctionImpl {
             tempfileInfoMap.put("tmpfileNum",(Integer)hashMap.get("tempFileNum"));
             tempfileInfoMap.put("filename",hashMap.get("fileName"));
             tempfileInfoMap.put("tmpfileNm",hashMap.get("tempFileName"));
-            tempfileInfoMap.put("tmpfileStatus",0);
+            tempfileInfoMap.put("tmpfileStatus",0);//0-未处理
             //将分片文件内容先写入临时文件
             flag = writeIntoTempfile(fileContentStr,tempFilePath);
             //分片文件信息写入临时文件信息表
