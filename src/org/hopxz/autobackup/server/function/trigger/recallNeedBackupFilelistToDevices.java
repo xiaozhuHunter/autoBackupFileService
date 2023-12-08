@@ -32,7 +32,7 @@ public class recallNeedBackupFilelistToDevices implements baseTriggerFunctionImp
                 tempArrayList.add(hashMap1);
             }
         }
-        recvMsgMap.put("/server/body/array/fileList",tempArrayList);
+        recvMsgMap.put("/server/body/array/fileInfoList",tempArrayList);
         recvMsgMap.put("/server/comm_head/deviceid","backupFileService");
         recvMsgMap.put("/server/comm_head/msgtype","returnResult");
         recvMsgMap.put("/server/comm_head/returncode","success");
