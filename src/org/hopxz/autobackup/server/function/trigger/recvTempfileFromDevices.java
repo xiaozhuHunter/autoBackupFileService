@@ -35,7 +35,7 @@ public class recvTempfileFromDevices implements baseTriggerFunctionImpl {
         String fileContentStr = hashMap.get("fileContent").toString();
         if(checkTempsignFromMsgmap(hashMap)){//如果发过来的字符串是分片文件内容
             HashMap<String,Object> tempfileInfoMap = new HashMap<>();
-            String tempFilePath = filepath+"/temp/"+hashMap.get("tempFileName");
+            String tempFilePath = filepath+"/temp/"+hashMap.get("fileName")+"/";
             //将分片文件的信息统计，准备写入临时文件信息表中
             tempfileInfoMap.put("tmpfilePath",tempFilePath);
             tempfileInfoMap.put("tmpfileNum",(Integer)hashMap.get("tempFileNum"));
@@ -43,7 +43,7 @@ public class recvTempfileFromDevices implements baseTriggerFunctionImpl {
             tempfileInfoMap.put("tmpfileNm",hashMap.get("tempFileName"));
             tempfileInfoMap.put("tmpfileStatus",0);//0-未处理
             //将分片文件内容先写入临时文件
-            flag = writeIntoTempfile(fileContentStr,tempFilePath);
+            flag = writeIntoTempfile(fileContentStr,tempFilePath+hashMap.get("tempFileName"));
             //分片文件信息写入临时文件信息表
             if(flag){
                 sqlUtils.insertDB(tempfileInfoMap,"nodeal_tmpfile_list");

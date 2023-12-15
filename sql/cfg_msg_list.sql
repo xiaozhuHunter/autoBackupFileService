@@ -1,3 +1,4 @@
+drop table cfg_msg_list;
 create table cfg_msg_list(
 msgName varchar(8),
 fieldName varchar(100),
