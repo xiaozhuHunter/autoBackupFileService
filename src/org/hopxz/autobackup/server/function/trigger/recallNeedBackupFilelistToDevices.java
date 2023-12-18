@@ -28,7 +28,7 @@ public class recallNeedBackupFilelistToDevices implements baseTriggerFunctionImp
                         "b.userid = c.userid and a.devFromWhere = c.deviceid "+
                                 "a.filepath = b.userRootPath + a.devFromWhere and " +
                                 "b.userid = '"+userIdInfo+"' and b.devFromWhere = '" +
-                                deviceInfo+"' and a.backupFlag = '1'");
+                                deviceInfo+"' and a.backupFlag in ('0','1','2')");
         ArrayList<HashMap<String,Object>> tempArrayList = new ArrayList<>();
         for(HashMap<String,Object> hashMap1:fileInfoList){
             if(!sqlResultsStr.contains(hashMap1)){
