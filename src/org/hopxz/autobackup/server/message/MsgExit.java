@@ -1,4 +1,4 @@
 package org.hopxz.autobackup.server.message;
 
-public class msgExit {
+public class MsgExit {
 }

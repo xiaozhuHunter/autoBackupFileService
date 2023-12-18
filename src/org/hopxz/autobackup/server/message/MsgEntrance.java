@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-public class msgEntrance {
+public class MsgEntrance {
     private SQLUtils sqlUtils = new SQLUtils();
     private ArrayList<HashMap<String,Object>> resultMap = new ArrayList<>();
     public Object dealMsgAndInvokeChildMethod(String msgString){

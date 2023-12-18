@@ -5,7 +5,6 @@ import org.hopxz.autobackup.server.common.utils.DeleteFileUtils;
 import org.hopxz.autobackup.server.common.utils.MD5Utils;
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
 
-import java.awt.datatransfer.FlavorEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
