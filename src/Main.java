@@ -9,9 +9,8 @@ public class Main {
     public static void main(String[] args) {
         SQLUtils sqlUtils = new SQLUtils();
         System.out.println(sqlUtils.getResultBySelect(
-                "tmpfileNm",
-                "nodeal_tmpfile_list",
-                "tmpfilePath = '/home/filebackup/testDevice/temp/test1/'" +
-                        "order by tmpfileNm"));
+                "*",
+                "nodeal_file_list",
+                "filepath||devFromWhere||'/'||filename = '/home/filebackup/testDevice/test1'"));
     }
 }
