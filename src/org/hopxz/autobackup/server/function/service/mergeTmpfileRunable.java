@@ -39,6 +39,7 @@ public class mergeTmpfileRunable implements Runnable {
     }//设置定时CD时间
 
     protected ArrayList<String> selectNeedMergeTempFileList(){
+        /*查询待处理合并的文件*/
         ArrayList<String> arrlist = new ArrayList<>();
         ArrayList<HashMap<String,Object>> resultBySelect = sqlUtils.
                 getResultBySelect("distinct a.filename as fileName,b.tmpfilePath as tmpfilePath," +
@@ -64,6 +65,7 @@ public class mergeTmpfileRunable implements Runnable {
         return arrlist;
    }
    protected ArrayList<String> getBase64StrListBySelectTmp(String fileNamePath){
+        /*获取分片文件中的base64字符串数据*/
         ArrayList<String> arrayList = new ArrayList<>();
         ArrayList<HashMap<String,Object>> resultBySelect = sqlUtils.
                 getResultBySelect("tmpfileNm",
@@ -76,6 +78,7 @@ public class mergeTmpfileRunable implements Runnable {
         return arrayList;
    }
    protected boolean chkTempFileAllRecved(String fileName,String tmpfilePath){
+        /*校验分片文件是否接收完全*/
         boolean flag = false;
         int countNum = (Integer) sqlUtils.getResultBySelect("count(*) as tmpfileCount",
                 "nodeal_tmpfile_list",
@@ -89,6 +92,7 @@ public class mergeTmpfileRunable implements Runnable {
         return flag;
    }
    protected String readAsString(String filePath){
+        /*从分片文件中读取内容字符串*/
         String content = "";
        try {
            content = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -98,6 +102,7 @@ public class mergeTmpfileRunable implements Runnable {
        return content;
    }
    protected void mergeTmpFile(ArrayList<String> base64StrList,String tempfilepath){
+        /*合并分片文件主程序*/
         String base64FromFileStr = "";
         for(String s:base64StrList){
             base64FromFileStr = base64FromFileStr + s;
