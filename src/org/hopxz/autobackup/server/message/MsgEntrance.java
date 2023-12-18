@@ -2,7 +2,7 @@ package org.hopxz.autobackup.server.message;
 
 
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
-import org.hopxz.autobackup.server.message.xmlUtils.parserXML;
+import org.hopxz.autobackup.server.message.xmlUtils.ParserXML;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -37,7 +37,7 @@ public class MsgEntrance {
     }
     protected HashMap<String,Object> parser(String msgString){
         HashMap<String,Object>hashMap = new HashMap<>();
-        parserXML parserXML = new parserXML();
+        ParserXML parserXML = new ParserXML();
         HashMap<String,Object> tempHashMap = parserXML.parser(msgString);
         if(tempHashMap.containsKey("/server/comm_head/msgtype") &&
                 (tempHashMap.get("/server/comm_head/msgtype").equals("") ||

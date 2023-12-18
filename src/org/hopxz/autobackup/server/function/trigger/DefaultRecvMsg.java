@@ -1,6 +1,6 @@
 package org.hopxz.autobackup.server.function.trigger;
 
-public class defaultRecvMsg {
+public class DefaultRecvMsg {
     private String successMsg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
             "<server><comm_head><returncode>success</returncode></comm_head><body/></server>";
     private String failMsg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +

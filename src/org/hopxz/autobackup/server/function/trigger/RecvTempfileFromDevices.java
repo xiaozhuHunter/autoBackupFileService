@@ -4,7 +4,7 @@ import org.hopxz.autobackup.server.common.utils.Base64Utils;
 import org.hopxz.autobackup.server.common.utils.DeleteFileUtils;
 import org.hopxz.autobackup.server.common.utils.MD5Utils;
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
-import org.hopxz.autobackup.server.function.impl.baseTriggerFunctionImpl;
+import org.hopxz.autobackup.server.function.impl.BaseTriggerFunctionImpl;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 
-public class recvTempfileFromDevices implements baseTriggerFunctionImpl {
-    private defaultRecvMsg msg = new defaultRecvMsg();
+public class RecvTempfileFromDevices implements BaseTriggerFunctionImpl {
+    private DefaultRecvMsg msg = new DefaultRecvMsg();
     @Override
     public String getResult(HashMap<String, Object> hashMap) {
         String msgStr = msg.getDefaultFailMsg();

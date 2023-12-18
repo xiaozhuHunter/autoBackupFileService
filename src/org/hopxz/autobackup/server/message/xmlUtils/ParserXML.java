@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class parserXML {
+public class ParserXML {
     /*暂不支持循环嵌套报文的解析*/
     private HashMap<String,Object>hashMap = new HashMap<>();
     public HashMap<String,Object> parser(String xmlStr){

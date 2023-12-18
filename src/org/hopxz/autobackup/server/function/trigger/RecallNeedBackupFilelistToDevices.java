@@ -1,13 +1,13 @@
 package org.hopxz.autobackup.server.function.trigger;
 
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
-import org.hopxz.autobackup.server.function.impl.baseTriggerFunctionImpl;
-import org.hopxz.autobackup.server.message.xmlUtils.packerXML;
+import org.hopxz.autobackup.server.function.impl.BaseTriggerFunctionImpl;
+import org.hopxz.autobackup.server.message.xmlUtils.PackerXML;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class recallNeedBackupFilelistToDevices implements baseTriggerFunctionImpl {
+public class RecallNeedBackupFilelistToDevices implements BaseTriggerFunctionImpl {
     @Override
     public String getResult(HashMap<String, Object> hashMap) {
         return getResultAsSoonAsSummaryDifferenceBetweenServerAndDevice(hashMap);
@@ -17,7 +17,7 @@ public class recallNeedBackupFilelistToDevices implements baseTriggerFunctionImp
         String userIdInfo = hashMap.get("loginid").toString();
         ArrayList<HashMap<String,Object>> fileInfoList = (ArrayList<HashMap<String, Object>>) hashMap.get("fileList");
         HashMap<String,Object> recvMsgMap = new HashMap<>();//用于收集结果map对象
-        packerXML packerXML = new packerXML();
+        PackerXML packerXML = new PackerXML();
         SQLUtils sqlUtils = new SQLUtils();
         String pathStr = sqlUtils.getResultBySelect("userRootPath",
                 "nodeal_file_list",

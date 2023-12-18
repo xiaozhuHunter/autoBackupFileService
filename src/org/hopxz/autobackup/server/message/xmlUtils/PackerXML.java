@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-public class packerXML {
+public class PackerXML {
     private int i = 2;//初始化循环参数
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     private Element rootElement;//初始化根节点信息

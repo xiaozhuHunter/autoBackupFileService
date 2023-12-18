@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class mergeTmpfileRunable implements Runnable {
+public class MergeTmpfileRunable implements Runnable {
     private SQLUtils sqlUtils = new SQLUtils();
     private Base64Utils base64Utils = new Base64Utils();
     private long sleeptimes = 30000;//默认值30秒
