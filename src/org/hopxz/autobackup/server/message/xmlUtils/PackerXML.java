@@ -30,7 +30,7 @@ public class PackerXML {
                 String pathStr =keySet.toArray()[j].toString();
                 Object valueObj = hashMap.get(pathStr);
                 if(pathStr.contains("array")){
-                    tempStr1 = tempStr1 + arrBodyToString(pathStr.split("array")[1],valueObj);
+                    tempStr1 = arrBodyToString(pathStr.split("array")[1],valueObj);
                     pathStr = pathStr.split("array")[0]+"array";
                     valueObj = tempStr1;
                 }
@@ -72,7 +72,7 @@ public class PackerXML {
                     listStr = listStr +"<"+keyStr+">"+valueStr+"</"+keyStr+">";
                 }
             }
-            tempStr1 = leafStrHead+listStr+leafStrFoot;
+            tempStr1 = leafStrHead+listStr+leafStrFoot+tempStr1;
         }
         return tempStr1;
     }

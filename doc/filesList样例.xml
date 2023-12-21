@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<server>
+	<comm_head>
+		<loginid></loginid>
+		<passwd></passwd>
+		<msgtype>filesList</msgtype>
+		<deviceid></deviceid>
+	</comm_head>
+	<body>
+		<array>
+			<filelist>
+				<fileName>fileName</fileName>
+				<md5Str>md5Str</md5Str>
+			</filelist>
+		</array>
+	</body>
+</server>

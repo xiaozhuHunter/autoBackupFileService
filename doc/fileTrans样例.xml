@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<server>
+	<comm_head>
+		<loginid></loginid>
+		<passwd></passwd>
+		<msgtype>fileTrans</msgtype>
+		<deviceid></deviceid>
+	</comm_head>
+	<body>
+		<fileName>filename</fileName>
+		<tempFileNum>tempFileNum</tempFileNum>
+		<tempFileName>tempFileName</tempFileName>
+		<fileContent>fileContent</fileContent>
+	</body>
+</server>
