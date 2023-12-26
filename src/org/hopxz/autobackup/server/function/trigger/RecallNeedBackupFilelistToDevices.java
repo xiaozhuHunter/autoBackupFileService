@@ -10,7 +10,13 @@ import java.util.HashMap;
 public class RecallNeedBackupFilelistToDevices implements BaseTriggerFunctionImpl {
     @Override
     public String getResult(HashMap<String, Object> hashMap) {
-        return getResultAsSoonAsSummaryDifferenceBetweenServerAndDevice(hashMap);
+        String msgStr = null;
+        try{
+            msgStr = getResultAsSoonAsSummaryDifferenceBetweenServerAndDevice(hashMap);
+        }catch (Exception e){
+            msgStr = new DefaultRecvMsg().getDefaultFailMsg();
+        }
+        return msgStr;
     }
     protected String getResultAsSoonAsSummaryDifferenceBetweenServerAndDevice(HashMap<String,Object>hashMap){
         String deviceInfo = hashMap.get("deviceid").toString();

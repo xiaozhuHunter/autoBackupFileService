@@ -11,14 +11,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.logging.Logger;
 
 public class RecvTempfileFromDevices implements BaseTriggerFunctionImpl {
     private DefaultRecvMsg msg = new DefaultRecvMsg();
+    private Logger log = Logger.getLogger("RecvTempfileFromDevices");
     @Override
     public String getResult(HashMap<String, Object> hashMap) {
-        String msgStr = msg.getDefaultFailMsg();
-        if(saveFileFromMsgmap(hashMap)){
-            msgStr = msg.getDefaultSuccessResult();
+        String msgStr = null;
+        try {
+            if (saveFileFromMsgmap(hashMap)) {
+                msgStr = msg.getDefaultSuccessResult();
+            }
+        }catch (Exception e){
+            msgStr = new DefaultRecvMsg().getDefaultFailMsg();
         }
         return msgStr;
     }
@@ -27,18 +33,19 @@ public class RecvTempfileFromDevices implements BaseTriggerFunctionImpl {
         boolean flag = false;
         HashMap<String,Object> userAndDevicesInfoMap = sqlUtils.getResultBySelect(
                         "a.userRootPath as userRootPath,b.deviceid as deviceid",
-                        "user_info a,devices_info b",
-                        "a.userId = b.userId and a.userId = '"+hashMap.get("loginid")+"'")
+                        "user_info a,user_device_cfg b",
+                        "a.userId = b.userId and a.loginNm = '"+hashMap.get("loginid")+"'")
                 .get(0);
         String filepath = userAndDevicesInfoMap.get("userRootPath").toString();
         filepath =filepath + userAndDevicesInfoMap.get("deviceid").toString();
         String fileContentStr = hashMap.get("fileContent").toString();
+        log.info("filepath:"+filepath+" fileContentStr:"+fileContentStr);
         if(checkTempsignFromMsgmap(hashMap)){//如果发过来的字符串是分片文件内容
             HashMap<String,Object> tempfileInfoMap = new HashMap<>();
             String tempFilePath = filepath+"/temp/"+hashMap.get("fileName")+"/";
             //将分片文件的信息统计，准备写入临时文件信息表中
             tempfileInfoMap.put("tmpfilePath",tempFilePath);
-            tempfileInfoMap.put("tmpfileNum",(Integer)hashMap.get("tempFileNum"));
+            tempfileInfoMap.put("tmpfileNum",Integer.parseInt(hashMap.get("tempFileNum").toString()));
             tempfileInfoMap.put("filename",hashMap.get("fileName"));
             tempfileInfoMap.put("tmpfileNm",hashMap.get("tempFileName"));
             tempfileInfoMap.put("tmpfileStatus",0);//0-未处理

@@ -22,14 +22,13 @@ public class StartService {
             Thread task = new Thread(new MergeTmpfileRunable(Integer.parseInt(initMap.get("sleep_times").toString())));
             task.start();
             log.info("分片合并服务启动成功");
-            //TCP通讯服务启动
-            //new TCPServerThread(Integer.parseInt(initMap.get("server_port").toString())).start();
-            //log.info("TCPServer started");
             //HTTP通讯服务启动
             SimpleHttpServer.Start(Integer.parseInt(initMap.get("http_server_port").toString()),
                     initMap.get("app_manage").toString(),
                     Integer.parseInt(initMap.get("pool_size").toString()));
             log.info("HTTPServer started");
+            //TCP通讯服务启动
+            new TCPServerThread(Integer.parseInt(initMap.get("server_port").toString())).start();
         }catch (NumberFormatException e){
             log.warning("参数格式出现错误，错误信息为："+e.getMessage());
         } catch (IOException e) {

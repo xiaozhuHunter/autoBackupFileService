@@ -57,7 +57,7 @@ public class MsgEntrance {
                 String tempHashMapKey = keySets.toArray()[i].toString();
                 String simpleKey = sqlUtils.getResultBySelect(
                         "fieldName","cfg_msg_list",
-                        "msgName in ('comm_head','"+msgtypeStr+"')" +
+                        "msgName in ('comm_head','"+msgtypeStr+"_req')" +
                                 "and fieldPathInMsg = '"+tempHashMapKey+"'").get(0)
                         .get("fieldName").toString();
                 log.info("第"+(i+1)+"个报文字段:"+simpleKey+"报文字段路径："+tempHashMapKey+"，字段值:"+tempHashMap.get(tempHashMapKey));
@@ -65,7 +65,7 @@ public class MsgEntrance {
             }
             resultMap = sqlUtils.getResultBySelect(
                             "methodName,className","cfg_msg_list",
-                            "msgName = '"+msgtypeStr+"'");
+                            "msgName = '"+msgtypeStr+"_req'");
         }
         return hashMap;
     }
