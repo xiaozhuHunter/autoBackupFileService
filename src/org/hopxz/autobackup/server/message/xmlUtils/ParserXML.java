@@ -38,7 +38,7 @@ public class ParserXML {
             hashMap.put(pathStr,node.getTextContent());
         }else if(nodeList.getLength() >= 1){
             if(node.getNodeName().equals("array")) {
-                getMapFromArrNode(node, pathStr);
+                getMapFromArrNode(node, pathStr+"/");
             }else{
                 for(int i=0;i<nodeList.getLength();i++){
                     reInokeMethod(nodeList.item(i),pathStr+"/"+nodeList.item(i).getNodeName());

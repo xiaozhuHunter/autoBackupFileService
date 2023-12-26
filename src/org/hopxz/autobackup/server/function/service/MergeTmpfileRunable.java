@@ -33,10 +33,12 @@ public class MergeTmpfileRunable implements Runnable {
         }
     }
 
-    public void setSleeptimes(long sleeptimes) {
-        this.sleeptimes = sleeptimes;
-    }//设置定时CD时间
-
+    //设置定时CD时间
+    public MergeTmpfileRunable(long sleeptimes){
+        if(sleeptimes != 0){
+            this.sleeptimes = sleeptimes;
+        }
+    }
     protected ArrayList<String> selectNeedMergeTempFileList(){
         /*查询待处理合并的文件*/
         ArrayList<String> arrlist = new ArrayList<>();

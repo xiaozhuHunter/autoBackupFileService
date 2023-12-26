@@ -4,8 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.logging.Logger;
 
 public class SQLUtils {
+    private Logger log = Logger.getLogger("SQLUtils");
     /*获得数据库连接，sqlite*/
     public Connection getConnection(String driverTypeStr,String uri){
         Connection conn=null;
@@ -64,6 +66,7 @@ public class SQLUtils {
         ArrayList<HashMap<String,Object>> arrHashMap = new ArrayList<>();
         PreparedStatement stat = null;
         String sqlStr = "select "+columnStr+" from "+tableName+" where "+conditonStr+";";
+        log.info("执行sql语句为：【"+sqlStr+"】");
         try {
             stat = conn.prepareStatement(sqlStr);
             ResultSet rs = stat.executeQuery();
@@ -100,7 +103,7 @@ public class SQLUtils {
     protected boolean executeDB(Connection conn,String sqlStr){
         boolean flag = false;
         PreparedStatement stat =null;
-        System.out.println(sqlStr);
+        log.info("执行sql语句为：【"+sqlStr+"】");
         try {
             conn.setAutoCommit(false);
             stat = conn.prepareStatement(sqlStr);

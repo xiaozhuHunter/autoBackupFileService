@@ -6,10 +6,14 @@ import org.hopxz.autobackup.server.communication.handler.SimpleHttpHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 public class SimpleHttpServer {
-    public static void Start(int port,String contextStr,int poolSize,String reqStr,String rspStr) throws IOException {
+    private static Logger logger = Logger.getLogger("SimpleHttpServer");
+    public static void Start(int port,String contextStr,int poolSize) throws IOException {
+        logger.info("http_port:"+port+"\nhttpserver poolSize:"+poolSize);
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(port),0);
+        logger.info("contextStr: "+contextStr);
         httpServer.createContext(contextStr,new SimpleHttpHandler());
         httpServer.setExecutor(Executors.newFixedThreadPool(poolSize));
         httpServer.start();

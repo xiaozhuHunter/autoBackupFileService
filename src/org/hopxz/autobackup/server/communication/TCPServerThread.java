@@ -8,17 +8,21 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class TCPServerThread {
+    private Logger log = Logger.getLogger("TCPServerThread");
     private int port;
     private boolean isFinished;
     private ServerSocket serverSocket;
     private ArrayList<SocketThread> socketThreads;
     public TCPServerThread(int port){
+        log.info("new TCPServerThread build");
         this.port = port;
         socketThreads = new ArrayList<>();
     }
     public void start(){
+        log.info("TCPServerThread Starting \n"+"starting port is:"+port);
         isFinished = false;
         try {
             serverSocket = new ServerSocket(port);
@@ -27,10 +31,12 @@ public class TCPServerThread {
                 SocketThread socketThread =new SocketThread(socket);
                 socketThreads.add(socketThread);
                 socketThread.start();
+                log.info("socketThread started");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        log.info("TCPServerThread Start Successfully");
     }
     public void stop(){
         isFinished = true;
@@ -52,6 +58,7 @@ public class TCPServerThread {
         private InputStream in;
         private OutputStream out;
         SocketThread(Socket socket){
+            log.info("build socketThread");
             this.socket = socket;
             try {
                 in=socket.getInputStream();
@@ -61,6 +68,7 @@ public class TCPServerThread {
             }
         }
         public void run(){
+            log.info("TCPServer start running");
             while(!interrupted()){
                 if(in == null){
                     return;
