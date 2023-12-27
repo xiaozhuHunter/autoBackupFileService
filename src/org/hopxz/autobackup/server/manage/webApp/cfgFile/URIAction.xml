@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<URIAction>
+    <URIActionInfo>
+        <array>
+            <URIActionList>
+                <URI_Path>/login</URI_Path>
+                <Method_Type>Sheet</Method_Type>
+                <Method_Path>src/org/hopxz/autobackup/server/manage/webUI/index.html</Method_Path>
+            </URIActionList>
+            <URIActionList>
+                <URI_Path>/checkLoginInfo</URI_Path>
+                <Method_Type>Function</Method_Type>
+                <Method_Path>org.hopxz.autobackup.server.manage.webApp.application.Login</Method_Path>
+            </URIActionList>
+        </array>
+    </URIActionInfo>
+</URIAction>

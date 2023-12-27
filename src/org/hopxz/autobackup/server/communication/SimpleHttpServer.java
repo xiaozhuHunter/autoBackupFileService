@@ -14,7 +14,8 @@ public class SimpleHttpServer {
         logger.info("http_port:"+port+"\nhttpserver poolSize:"+poolSize);
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(port),0);
         logger.info("contextStr: "+contextStr);
-        httpServer.createContext(contextStr,new SimpleHttpHandler());
+        SimpleHttpHandler httpHandler = new SimpleHttpHandler();
+        httpServer.createContext(contextStr,httpHandler);
         httpServer.setExecutor(Executors.newFixedThreadPool(poolSize));
         httpServer.start();
     }
