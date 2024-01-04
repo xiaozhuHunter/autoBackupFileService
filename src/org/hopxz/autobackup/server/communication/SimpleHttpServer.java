@@ -16,7 +16,7 @@ public class SimpleHttpServer {
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(port),0);
         SimpleHttpHandler httpHandler = new SimpleHttpHandler();
         //创建http相关配置对象，用于启动服务配置
-        new URIAction().uriCreateContext(httpServer,httpHandler);
+        new URIAction("HTTP").uriCreateContext(httpServer,httpHandler);
         httpServer.setExecutor(Executors.newFixedThreadPool(poolSize));
         httpServer.start();
     }

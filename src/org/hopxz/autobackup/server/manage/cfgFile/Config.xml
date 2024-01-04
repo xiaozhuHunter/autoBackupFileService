@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<autoBackup>
+    <configInfoList>
+        <array>
+            <configInfo>
+                <conn_type>TCP</conn_type>
+                <config_path>src/org/hopxz/autobackup/server/manage/cfgFile/TCPConn.xml</config_path>
+            </configInfo>
+            <configInfo>
+                <conn_type>HTTP</conn_type>
+                <config_path>src/org/hopxz/autobackup/server/manage/cfgFile/HttpConn.xml</config_path>
+            </configInfo>
+        </array>
+    </configInfoList>
+</autoBackup>

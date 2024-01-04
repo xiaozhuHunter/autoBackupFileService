@@ -1,5 +1,6 @@
 package org.hopxz.autobackup.server.communication;
 
+import org.hopxz.autobackup.server.manage.trigger.URIAction;
 import org.hopxz.autobackup.server.message.MsgEntrance;
 
 import java.io.IOException;
@@ -80,7 +81,9 @@ public class TCPServerThread {
                         int size = in.read(buffer);
                         if(size > 0){
                             String data = new String(buffer,0,size);
-                            String resultStr = new MsgEntrance().dealMsgAndInvokeChildMethod(data).toString();
+                            URIAction uriAction = new URIAction("TCP");
+                            uriAction.setRequestString(data);
+                            String resultStr = uriAction.TCPRelationShip().toString();
                             out.write(resultStr.getBytes());
                             out.flush();
                         }

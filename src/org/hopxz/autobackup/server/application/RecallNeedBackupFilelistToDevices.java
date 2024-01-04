@@ -1,7 +1,8 @@
-package org.hopxz.autobackup.server.function.trigger;
+package org.hopxz.autobackup.server.application;
 
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
-import org.hopxz.autobackup.server.function.impl.BaseTriggerFunctionImpl;
+import org.hopxz.autobackup.server.application.impl.BaseTriggerFunctionImpl;
+import org.hopxz.autobackup.server.common.DefaultRecvMsg;
 import org.hopxz.autobackup.server.message.xmlUtils.PackerXML;
 
 import java.util.ArrayList;

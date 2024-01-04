@@ -1,10 +1,11 @@
-package org.hopxz.autobackup.server.function.trigger;
+package org.hopxz.autobackup.server.application;
 
 import org.hopxz.autobackup.server.common.utils.Base64Utils;
 import org.hopxz.autobackup.server.common.utils.DeleteFileUtils;
 import org.hopxz.autobackup.server.common.utils.MD5Utils;
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
-import org.hopxz.autobackup.server.function.impl.BaseTriggerFunctionImpl;
+import org.hopxz.autobackup.server.application.impl.BaseTriggerFunctionImpl;
+import org.hopxz.autobackup.server.common.DefaultRecvMsg;
 
 import java.io.File;
 import java.io.FileWriter;

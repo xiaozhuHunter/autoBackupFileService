@@ -6,29 +6,12 @@ import java.lang.reflect.Method;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) throws IOException {
-        String str = "username=admin&passwd=admin";
-        try {
-            Class clazz = Class.forName("org.hopxz.autobackup.server.manage.application.Login");
-            Method method = clazz.getMethod("resultStr",String.class);
-            String resultString = method.invoke(clazz.newInstance(),str).toString();
-            System.out.println(resultString);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        }
         /*SQLUtils sqlUtils = new SQLUtils();
         System.out.println(sqlUtils.getResultBySelect(
                 "*",
                 "nodeal_file_list",
                 "filepath||devFromWhere||'/'||filename = '/home/filebackup/testDevice/test1'"));*/
-        /*String xmlStr2 = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+        String xmlStr2 = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<server>\n" +
                 "\t<comm_head>\n" +
                 "\t\t<loginid>loginid</loginid>\n" +
@@ -100,7 +83,9 @@ public class Main {
                 "</array>\n" +
                 "</URIINFO>"+
                 "</URIAction>";
-        String xmlStr3= ReadFileUtils.fileContextStr("src/org/hopxz/autobackup/server/manage/webApp/cfgFile/URIAction.xml");
+        String msgtypStr = xmlStr.substring(xmlStr.indexOf("<msgtype>")+9,xmlStr.indexOf("</msgtype>"));
+        System.out.println(msgtypStr);
+        /*String xmlStr3= ReadFileUtils.fileContextStr("src/org/hopxz/autobackup/server/manage/webApp/cfgFile/HttpConn.xml");
         xmlStr5 = xmlStr5.replace("\n","").replace("\t","");
         System.out.println(xmlStr3.contains("<?xml version=\"1.0\" encoding=\"utf-8\"?>"));
         ParserXML parserXML = new ParserXML();

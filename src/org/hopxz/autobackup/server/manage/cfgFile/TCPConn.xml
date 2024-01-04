@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<URIAction>
+    <URIActionList>
+        <array>
+            <URIActionInfo>
+                <URI_Path>fileTrans</URI_Path>
+                <Method_Name>getResult</Method_Name>
+                <Method_Path>org.hopxz.autobackup.server.application.RecvTempfileFromDevices</Method_Path>
+            </URIActionInfo>
+            <URIActionInfo>
+                <URI_Path>filesList</URI_Path>
+                <Method_Name>getResult</Method_Name>
+                <Method_Path>org.hopxz.autobackup.server.application.RecallNeedBackupFilelistToDevices</Method_Path>
+            </URIActionInfo>
+        </array>
+    </URIActionList>
+</URIAction>

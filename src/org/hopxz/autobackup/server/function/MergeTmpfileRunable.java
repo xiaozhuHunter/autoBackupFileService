@@ -1,4 +1,4 @@
-package org.hopxz.autobackup.server.function.service;
+package org.hopxz.autobackup.server.function;
 
 import org.hopxz.autobackup.server.common.utils.Base64Utils;
 import org.hopxz.autobackup.server.common.utils.DeleteFileUtils;

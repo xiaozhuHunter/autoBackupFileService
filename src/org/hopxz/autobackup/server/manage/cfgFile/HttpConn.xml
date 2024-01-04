@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<URIAction>
+    <URIActionList>
+        <array>
+            <URIActionInfo>
+                <URI_Path>/checkLoginInfo</URI_Path>
+                <Method_Type>HTTP</Method_Type>
+                <Method_Name>getResult</Method_Name>
+                <Method_Path>org.hopxz.autobackup.server.application.Login</Method_Path>
+            </URIActionInfo>
+        </array>
+    </URIActionList>
+</URIAction>

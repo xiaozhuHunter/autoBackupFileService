@@ -2,7 +2,7 @@ package org.hopxz.autobackup.server.message;
 
 
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
-import org.hopxz.autobackup.server.function.trigger.DefaultRecvMsg;
+import org.hopxz.autobackup.server.common.DefaultRecvMsg;
 import org.hopxz.autobackup.server.message.xmlUtils.ParserXML;
 
 import java.lang.reflect.InvocationTargetException;
@@ -14,35 +14,8 @@ import java.util.logging.Logger;
 
 public class MsgEntrance {
     private SQLUtils sqlUtils = new SQLUtils();
-    private ArrayList<HashMap<String,Object>> resultMap = new ArrayList<>();
     private Logger log = Logger.getLogger("MsgEntrance");
-    public Object dealMsgAndInvokeChildMethod(String msgString){
-        Object resultMsgObj = null;
-        if(msgString.equals("") || msgString == null){
-            resultMsgObj = new DefaultRecvMsg().getDefaultFailMsg();
-        }else {
-            HashMap<String, Object> hashMap = parser(msgString);//methodName
-            String className = resultMap.get(0).get("className").toString();
-            String methodName = resultMap.get(0).get("methodName").toString();
-            try {
-                Class clazz = Class.forName(className);
-                Method method = clazz.getMethod(methodName, HashMap.class);
-                resultMsgObj = method.invoke(clazz.newInstance(), hashMap);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return resultMsgObj;
-    }
-    protected HashMap<String,Object> parser(String msgString){
+    public HashMap<String,Object> parser(String msgString){
         HashMap<String,Object>hashMap = new HashMap<>();
         ParserXML parserXML = new ParserXML();
         HashMap<String,Object> tempHashMap = parserXML.parser(msgString);
@@ -63,9 +36,6 @@ public class MsgEntrance {
                 log.info("第"+(i+1)+"个报文字段:"+simpleKey+"报文字段路径："+tempHashMapKey+"，字段值:"+tempHashMap.get(tempHashMapKey));
                 hashMap.put(simpleKey,tempHashMap.get(tempHashMapKey));
             }
-            resultMap = sqlUtils.getResultBySelect(
-                            "methodName,className","cfg_msg_list",
-                            "msgName = '"+msgtypeStr+"_req'");
         }
         return hashMap;
     }

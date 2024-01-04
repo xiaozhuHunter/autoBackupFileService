@@ -3,7 +3,7 @@ package org.hopxz.autobackup.server;
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
 import org.hopxz.autobackup.server.communication.SimpleHttpServer;
 import org.hopxz.autobackup.server.communication.TCPServerThread;
-import org.hopxz.autobackup.server.function.service.MergeTmpfileRunable;
+import org.hopxz.autobackup.server.function.MergeTmpfileRunable;
 
 import java.io.IOException;
 import java.util.ArrayList;
