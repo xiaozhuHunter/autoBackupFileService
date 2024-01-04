@@ -2,13 +2,9 @@ package org.hopxz.autobackup.server.communication.handler;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.hopxz.autobackup.server.manage.webApp.trigger.URIAction;
-import org.hopxz.autobackup.server.message.MsgEntrance;
+import org.hopxz.autobackup.server.manage.trigger.URIAction;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 public class SimpleHttpHandler implements HttpHandler {

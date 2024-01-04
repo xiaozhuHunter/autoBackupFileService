@@ -1,29 +1,34 @@
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
-import org.hopxz.autobackup.server.common.utils.ReadFileUtils;
-import org.hopxz.autobackup.server.common.utils.SQLUtils;
-import org.hopxz.autobackup.server.message.xmlUtils.PackerXML;
-import org.hopxz.autobackup.server.message.xmlUtils.ParserXML;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) throws IOException {
+        String str = "username=admin&passwd=admin";
+        try {
+            Class clazz = Class.forName("org.hopxz.autobackup.server.manage.application.Login");
+            Method method = clazz.getMethod("resultStr",String.class);
+            String resultString = method.invoke(clazz.newInstance(),str).toString();
+            System.out.println(resultString);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        }
         /*SQLUtils sqlUtils = new SQLUtils();
         System.out.println(sqlUtils.getResultBySelect(
                 "*",
                 "nodeal_file_list",
                 "filepath||devFromWhere||'/'||filename = '/home/filebackup/testDevice/test1'"));*/
-        String xmlStr2 = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+        /*String xmlStr2 = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<server>\n" +
                 "\t<comm_head>\n" +
                 "\t\t<loginid>loginid</loginid>\n" +

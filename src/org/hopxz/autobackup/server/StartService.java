@@ -24,7 +24,6 @@ public class StartService {
             log.info("分片合并服务启动成功");
             //HTTP通讯服务启动
             SimpleHttpServer.Start(Integer.parseInt(initMap.get("http_server_port").toString()),
-                    initMap.get("app_manage").toString(),
                     Integer.parseInt(initMap.get("pool_size").toString()));
             log.info("HTTPServer started");
             //TCP通讯服务启动
