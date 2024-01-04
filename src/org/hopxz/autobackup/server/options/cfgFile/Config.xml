@@ -8,7 +8,7 @@
             </configInfo>
             <configInfo>
                 <conn_type>HTTP</conn_type>
-                <config_path>src/org/hopxz/autobackup/server/manage/cfgFile/HttpConn.xml</config_path>
+                <config_path>src/org/hopxz/autobackup/server/manage/cfgFile/HTTPConn.xml</config_path>
             </configInfo>
         </array>
     </configInfoList>

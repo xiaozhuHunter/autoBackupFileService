@@ -1,4 +1,4 @@
-package org.hopxz.autobackup.server.manage.trigger;
+package org.hopxz.autobackup.server.options.trigger;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;

@@ -85,7 +85,7 @@ public class Main {
                 "</URIAction>";
         String msgtypStr = xmlStr.substring(xmlStr.indexOf("<msgtype>")+9,xmlStr.indexOf("</msgtype>"));
         System.out.println(msgtypStr);
-        /*String xmlStr3= ReadFileUtils.fileContextStr("src/org/hopxz/autobackup/server/manage/webApp/cfgFile/HttpConn.xml");
+        /*String xmlStr3= ReadFileUtils.fileContextStr("src/org/hopxz/autobackup/server/manage/webApp/cfgFile/HTTPConn.xml");
         xmlStr5 = xmlStr5.replace("\n","").replace("\t","");
         System.out.println(xmlStr3.contains("<?xml version=\"1.0\" encoding=\"utf-8\"?>"));
         ParserXML parserXML = new ParserXML();

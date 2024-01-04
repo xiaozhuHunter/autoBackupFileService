@@ -1,7 +1,6 @@
 package org.hopxz.autobackup.server.communication;
 
-import org.hopxz.autobackup.server.manage.trigger.URIAction;
-import org.hopxz.autobackup.server.message.MsgEntrance;
+import org.hopxz.autobackup.server.options.trigger.URIAction;
 
 import java.io.IOException;
 import java.io.InputStream;

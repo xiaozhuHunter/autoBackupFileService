@@ -2,7 +2,7 @@ package org.hopxz.autobackup.server.communication.handler;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.hopxz.autobackup.server.manage.trigger.URIAction;
+import org.hopxz.autobackup.server.options.trigger.URIAction;
 
 import java.io.*;
 import java.util.logging.Logger;
