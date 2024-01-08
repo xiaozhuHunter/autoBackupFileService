@@ -1,4 +1,4 @@
-package org.hopxz.autobackup.server.application;
+package org.hopxz.autobackup.server.application.httpApp;
 
 import org.hopxz.autobackup.server.application.impl.BaseApplicationAbstact;
 import org.hopxz.autobackup.server.application.impl.BaseTriggerFunctionImpl;
