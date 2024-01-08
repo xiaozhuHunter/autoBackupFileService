@@ -3,6 +3,7 @@ package org.hopxz.autobackup.server.application;
 import org.hopxz.autobackup.server.common.utils.SQLUtils;
 import org.hopxz.autobackup.server.application.impl.BaseTriggerFunctionImpl;
 import org.hopxz.autobackup.server.common.DefaultRecvMsg;
+import org.hopxz.autobackup.server.message.MsgExit;
 import org.hopxz.autobackup.server.message.xmlUtils.PackerXML;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class RecallNeedBackupFilelistToDevices implements BaseTriggerFunctionImp
         try{
             msgStr = getResultAsSoonAsSummaryDifferenceBetweenServerAndDevice(hashMap);
         }catch (Exception e){
-            msgStr = new DefaultRecvMsg().getDefaultFailMsg();
+            msgStr = DefaultRecvMsg.failMsg;
         }
         return msgStr;
     }
@@ -48,10 +49,10 @@ public class RecallNeedBackupFilelistToDevices implements BaseTriggerFunctionImp
                 sqlUtils.insertDB(tempHashMap,"nodeal_file_list");
             }
         }
-        recvMsgMap.put("/server/body/array/fileInfoList",tempArrayList);
-        recvMsgMap.put("/server/comm_head/deviceid","backupFileService");
-        recvMsgMap.put("/server/comm_head/msgtype","returnResult");
-        recvMsgMap.put("/server/comm_head/returncode","success");
-        return packerXML.packer(recvMsgMap);
+        recvMsgMap.put("fileInfoList",tempArrayList);
+        recvMsgMap.put("deviceid","backupFileService");
+        recvMsgMap.put("msgtype","filesList");
+        recvMsgMap.put("returncode","success");
+        return new MsgExit().packer(recvMsgMap);
     }
 }

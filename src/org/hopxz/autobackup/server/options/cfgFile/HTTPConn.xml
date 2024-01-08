@@ -5,7 +5,7 @@
             <URIActionInfo>
                 <URI_Path>/checkLoginInfo</URI_Path>
                 <Method_Name>getResult</Method_Name>
-                <Method_Path>org.hopxz.autobackup.server.application.Login</Method_Path>
+                <Method_Path>org.hopxz.autobackup.server.application.LoginSystem</Method_Path>
             </URIActionInfo>
         </array>
     </URIActionList>

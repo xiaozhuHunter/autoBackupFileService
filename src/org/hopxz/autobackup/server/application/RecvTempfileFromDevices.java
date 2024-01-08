@@ -22,10 +22,10 @@ public class RecvTempfileFromDevices implements BaseTriggerFunctionImpl {
         String msgStr = null;
         try {
             if (saveFileFromMsgmap(hashMap)) {
-                msgStr = msg.getDefaultSuccessResult();
+                msgStr = DefaultRecvMsg.successMsg;
             }
         }catch (Exception e){
-            msgStr = new DefaultRecvMsg().getDefaultFailMsg();
+            msgStr = DefaultRecvMsg.failMsg;
         }
         return msgStr;
     }

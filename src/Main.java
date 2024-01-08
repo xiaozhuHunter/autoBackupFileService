@@ -84,7 +84,8 @@ public class Main {
                 "</URIINFO>"+
                 "</URIAction>";
         String msgtypStr = xmlStr.substring(xmlStr.indexOf("<msgtype>")+9,xmlStr.indexOf("</msgtype>"));
-        System.out.println(msgtypStr);
+        String s = "000111232";
+        System.out.println(Integer.getInteger(s,0));
         /*String xmlStr3= ReadFileUtils.fileContextStr("src/org/hopxz/autobackup/server/manage/webApp/cfgFile/HTTPConn.xml");
         xmlStr5 = xmlStr5.replace("\n","").replace("\t","");
         System.out.println(xmlStr3.contains("<?xml version=\"1.0\" encoding=\"utf-8\"?>"));
