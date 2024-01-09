@@ -103,7 +103,7 @@ public class URIAction {
         HashMap<String,Object> hashMap = new HashMap<>();
         for(HashMap<String,Object> tempHashMap:
                 (ArrayList<HashMap<String, Object>>)configHashMap.get("/autoBackup/configInfoList/array/configInfo")){
-            if(socketType.equals(tempHashMap.get("conn_type"))){
+            if(tempHashMap.containsKey("conn_type") && socketType.equals(tempHashMap.get("conn_type"))){
                 hashMap = parserXML.parser(ReadFileUtils.fileContextStr(tempHashMap.get("config_path").toString()));
             }
         }

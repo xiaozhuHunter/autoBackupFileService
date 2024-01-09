@@ -18,15 +18,17 @@ public class LoginSystem extends BaseApplicationAbstact {
         String LoginType = hashMap.get("msgtype").toString();
         switch (LoginType){
             case "loginAdd"://添加用户
-                String userName = hashMap.get("userName").toString();
-                String password = hashMap.get("password").toString();
-                String loginName = hashMap.get("loginName").toString();
+                String userName = hashMap.get("userName").toString();//待添加用户登录id
+                String password = hashMap.get("password").toString();//待添加用户密码
+                String loginName = hashMap.get("loginName").toString();//待添加用户名称
+                log.info("======待处理信息======\n " +
+                        "userName:"+userName+" password:"+password+" loginName:"+loginName);
                 if(loginCheck(userName)){
                     result = DefaultRecvMsg.successMsg;
                 }else{
                     HashMap<String,Object> sqlHashMap = new HashMap<>();
                     int userIdMax = Integer.parseInt(super.getSelectResultsListByConditionAndColumnlist
-                            ("userid as userId",
+                            ("userId",
                             "user_info",
                             "1=1 " +
                                     "order by userId desc").get("userId").toString())+1;
@@ -40,10 +42,12 @@ public class LoginSystem extends BaseApplicationAbstact {
                     }
                 }
                 break;
-            case "loginCheck":
+            case "loginCheck"://用户信息校验
                 String loginId = hashMap.get("loginId").toString();
                 String passwd = hashMap.get("passwd").toString();
                 String deviceMac = hashMap.get("deviceMac").toString();
+                log.info("======登录待校验信息：======\n " +
+                        "loginid:"+loginId+" passwd:"+passwd+" deviceMac:"+deviceMac);
                 if(loginCheck(loginId,passwd)
                         && addInfoWhenDeviceIdIsExitsNotByLoginNm(loginId,deviceMac)){
                     result = DefaultRecvMsg.successMsg;
@@ -55,6 +59,7 @@ public class LoginSystem extends BaseApplicationAbstact {
         }
         return result;
     }
+    //校验用户是否已注册
     private boolean loginCheck(String userName){
         boolean flag = false;
         try {
@@ -70,6 +75,7 @@ public class LoginSystem extends BaseApplicationAbstact {
         }
         return flag;
     }
+    //校验用户和密码是否匹配
     private boolean loginCheck(String userName,String password){
         boolean flag = false;
         try {
@@ -86,10 +92,11 @@ public class LoginSystem extends BaseApplicationAbstact {
         }
         return flag;
     }
+    //判断用户和设备是否绑定，设备是否已注册
     private boolean addInfoWhenDeviceIdIsExitsNotByLoginNm(String userName,String deviceMac){
         boolean flag = false;
         int userid = Integer.parseInt(super.getSelectResultsListByConditionAndColumnlist
-                ("userid as userId",
+                ("userId",
                 "user_info",
                 "loginNm = '"+userName+"'").get("userId").toString());
         //通过用户名和用户设备的mac值比对，确认是否已经绑定用户与设备
@@ -112,7 +119,7 @@ public class LoginSystem extends BaseApplicationAbstact {
                 sql1HashMap.put("userid",userid);
                 if(deviceExits == 0){//设备是否已经新注册：0-未注册，其他-已注册
                     int deviceidMax = Integer.parseInt(super.getSelectResultsListByConditionAndColumnlist
-                            ("deviceId as deviceId",
+                            ("deviceId",
                             "devices_info",
                             "1=1 " +
                                     "order by deviceid desc").get("deviceId").toString())+1;
@@ -124,7 +131,7 @@ public class LoginSystem extends BaseApplicationAbstact {
                 }else{
                     //获取设备已注册信息
                     int deviceid = Integer.parseInt(super.getSelectResultsListByConditionAndColumnlist
-                            ("deviceId as deviceId",
+                            ("deviceId",
                             "devices_info",
                             "deviceMac = '"+deviceMac+"'").get("deviceId").toString());
                     sql1HashMap.put("deviceid",deviceid);
